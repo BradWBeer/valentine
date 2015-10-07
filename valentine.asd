@@ -10,5 +10,6 @@
 	       (:file "library")
 	       (:file "swigbullet")
 	       ;;(:file "swigbullet-clos")
+	       (:file "valentine")
 	       ))
 

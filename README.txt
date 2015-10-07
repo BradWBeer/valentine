@@ -1,1 +1,47 @@
-This is the stub README.txt for the "valentine" project.
+
+# Valentine: A Common Lisp wrapper for the Bullet Physics Library
+
+## Notes
+
+* The CLOS file doesn't work yet. I'm having trouble finding *where* in the file the problem is.
+
+* There are redefined constants. I'll figure that out later.
+
+* You can build the bindings...mostly. You will need SWIG and g++. And you will need to make a few manual changes to swigbullet.lisp
+
+
+## To build: 
+
+* find a work directory
+
+* type: git clone https://github.com/bulletphysics/bullet3.git
+
+* make and enter a build directory
+
+* type: cmake <path to bullet repo> -G "Unix Makefiles" -DINSTALL_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DBUILD_EXTRAS=OFF
+  (If you are not building for Unix...I don't know what to do for you.)
+
+* type: make -j <number of cores you have>
+
+* type: sudo make install 
+  (Enter your password) 
+
+* cd to ~/quicklisp/local-projects
+
+* type: git clone git@github.com:BradWBeer/valentine.git
+
+* go to the library.lisp file and point the library directory to your local-projects directory. (I know, I'll fix it!)
+
+* start up your local lisp 
+
+* in the repl type: (ql:quicklisp :valentine)
+
+* ignore all redefine errors. (This is my first checkin, give me a break!)
+
+* use valentine...oh, all the symbols are private right now so be sure to use valentine::<symbol>
+
+* report any bugs...I bet there's a lot of them
+
+* have fun!
+
+
