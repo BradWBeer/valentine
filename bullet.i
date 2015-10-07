@@ -1,6 +1,9 @@
 %module(directors="1") swigbullet
 #pragma SWIG nowarn=350,351,394,395
+
+
 %{
+
 #include <BulletSoftBody/btSoftBody.h>
 #include <BulletSoftBody/btSoftBodyHelpers.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
@@ -19,6 +22,11 @@
   typedef btSoftBody::fCollision fCollision;
   %}
 
+%rename("length1") *::length;
+%ignore btSequentialImpulseConstraintSolver::getSSE4_1ConstraintRowSolverGeneric();
+%ignore btSequentialImpulseConstraintSolver::getSSE4_1ConstraintRowSolverLowerLimit();
+%ignore btSequentialImpulseConstraintSolver::getSSE2ConstraintRowSolverGeneric();
+%ignore btSequentialImpulseConstraintSolver::getSSE2ConstraintRowSolverLowerLimit();
 
 //btSoftBody nested classes
 struct Element
@@ -166,6 +174,7 @@ struct Node : Feature
 %ignore btSoftBody::m_cdbvt;
 %ignore btSoftBody::m_fdbvt;
 
+
 %include "BulletSoftBody/btSparseSDF.h"
 %include "BulletSoftBody/btSoftBody.h"
 %include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -242,10 +251,3 @@ EXPORT btDbvt *_wrap_btSoftBody_m_cdbvt_get (btSoftBody *larg1) {
 %array_class(float, floatArray);
 %array_class(btVector3, btVector3Array);
 
-
-%{
-  int main() {
-
-    return 0;
-  }
-  %}

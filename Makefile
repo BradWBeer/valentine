@@ -1,6 +1,7 @@
 
 CC=g++
 AR=ar
+SED=sed
 CCFLAGS=  -g -Wall -O3 -fPIC
 SWIG=swig
 SFLAGS= -cffi -c++ -fastdispatch -DSWIG_TYPE_TABLE=swigbullet 
@@ -25,6 +26,9 @@ $(target): $(objects)
 
 %_wrap.cxx: %.i
 	$(SWIG) $(SFLAGS) $(INCLUDES) -o $@ $< 
+	$(SED)  -i 's/#\.BT_ENABLE_GYROSCOPIC_FORCE_IMPLICIT_BODY/#.8/' swigbullet.lisp 
+	$(SED)  -i 's/( :pointer)/(_ :pointer)/p' swigbullet.lisp 
+	$(SED)  -i 's/("_wrap_length" length)/("_wrap_length" length1)/' swigbullet.lisp 
 
 %.o: %.cxx
 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@

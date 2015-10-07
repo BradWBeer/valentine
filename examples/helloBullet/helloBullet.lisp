@@ -1,68 +1,42 @@
 (ql:quickload :valentine)
 
-;; 	int i;
-;; 	///-----initialization_start-----
+;; collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
 
-;; 	///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
 (setf collision-Configuration (valentine::new_btDefaultCollisionConfiguration))
 
-;; 	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
-
-(setf dispatcher (new	btCollisionDispatcher(collisionConfiguration);
-;; 	///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
-;; 	btCollisionDispatcher* dispatcher = new	btCollisionDispatcher(collisionConfiguration);
+;; use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
  (setf dispacher (valentine::new_btcollisiondispatcher collision-configuration ))
 
 
-;; 	///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
-;; 	btBroadphaseInterface* overlappingPairCache = new btDbvtBroadphase();
+;; btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
 (setf overlapping-pair-cache (cffi:foreign-alloc 'valentine::btdbvtbroadphase))
 
-;; 	///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-;; 	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
+;; the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
 (setf solver (valentine::new_btsequentialimpulseconstraintsolver))
 
-
-;; 	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,overlappingPairCache,solver,collisionConfiguration);
 (setf dynamics-world (valentine::new_btdiscretedynamicsworld dispacher overlapping-pair-cache solver collision-configuration))
 
-;; 	dynamicsWorld->setGravity(btVector3(0,-10,0));
-
 (valentine::btdiscretedynamicsworld_setgravity
- dynamics-world
- (cffi:with-foreign-objects ((x :float 0)
-			     (y :float 10)
-			     (z :float 0))
-   (valentine::new_btvector3 x y z)))
+ dynamics-world (valentine::make-btVector3 0 10 0))
 
-;; 	///-----initialization_end-----
+;; -----initialization_end-----
 
-;; 	///create a few basic rigid bodies
-;; 	btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(50.),btScalar(50.),btScalar(50.)));
+;; create a few basic rigid bodies
+(setf groundShape (valentine::new_btboxshape (valentine::make-btvector3 50 50 50)))
 
+;; keep track of the shapes, we release memory at exit.
+;; make sure to re-use collision shapes among rigid bodies whenever possible!
+(setf collision-shapes nil)
+(push groundshape collision-shapes)
 
+(setf ground-transform (valentine::new_btTransform))
+(valentine::bttransform_setidentity ground-transform)
+(valentine::bttransform_setorigin ground-transform (valentine::make-btvector3 0 -56 0))
 
-;; 	//keep track of the shapes, we release memory at exit.
-;; 	//make sure to re-use collision shapes among rigid bodies whenever possible!
-;; 	btAlignedObjectArray<btCollisionShape*> collisionShapes;
+(cffi:with-foreign-object (mass :float)
+  (setf (cffi:mem-aref mass :float) (coerce 0 'single-float))
 
-;; 	collisionShapes.push_back(groundShape);
-
-;; 	btTransform groundTransform;
-;; 	groundTransform.setIdentity();
-;; 	groundTransform.setOrigin(btVector3(0,-56,0));
-
-;; 	{
-;; 		btScalar mass(0.);
-
-;; 		//rigidbody is dynamic if and only if mass is non zero, otherwise static
-;; 		bool isDynamic = (mass != 0.f);
-
-;; 		btVector3 localInertia(0,0,0);
-;; 		if (isDynamic)
-;; 			groundShape->calculateLocalInertia(mass,localInertia);
-
-;; 		//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+;; using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
 ;; 		btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
 ;; 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,myMotionState,groundShape,localInertia);
 ;; 		btRigidBody* body = new btRigidBody(rbInfo);
