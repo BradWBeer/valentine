@@ -30,6 +30,8 @@
 
 * type: git clone git@github.com:BradWBeer/valentine.git
 
+* enter the valentine directory and type: make
+
 * go to the library.lisp file and point the library directory to your local-projects directory. (I know, I'll fix it!)
 
 * start up your local lisp 
