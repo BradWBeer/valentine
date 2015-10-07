@@ -30,7 +30,7 @@ $(target): $(objects)
 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f *.lisp
+	rm -f swigbullet*.lisp
 	rm -f *.cxx
 	rm -f $(objects)
 	rm -f $(target)

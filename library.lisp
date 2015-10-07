@@ -10,6 +10,5 @@
 ;; (cffi:define-foreign-library :libBullet
 ;;   (cffi-features:unix "/home/warweasle/quicklisp/local-projects/valentine/libbullet_wrap.so"))
 				   
-
 (cffi:load-foreign-library "/home/warweasle/quicklisp/local-projects/valentine/libbullet_wrap.so")
 

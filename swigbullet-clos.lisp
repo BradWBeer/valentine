@@ -1,4 +1,3 @@
-(in-package :valentine)
 
 (cl:defclass bt-vector3()
   ((ff-pointer :reader ff-pointer)))
@@ -37,7 +36,7 @@
 (cl:defmethod length2 ((self bt-vector3))
   (btVector3_length2 (ff-pointer self)))
 
-(cl:defmethod _length ((self bt-vector3))
+(cl:defmethod length ((self bt-vector3))
   (btVector3_length (ff-pointer self)))
 
 (cl:defmethod norm ((self bt-vector3))
@@ -325,7 +324,7 @@
 (cl:defmethod length2 ((self bt-quaternion))
   (btQuaternion_length2 (ff-pointer self)))
 
-(cl:defmethod _length ((self bt-quaternion))
+(cl:defmethod length ((self bt-quaternion))
   (btQuaternion_length (ff-pointer self)))
 
 (cl:defmethod normalize ((self bt-quaternion))
@@ -3675,6 +3674,64 @@
 
 (cl:defmethod set-lower-limit ((self bt-hinge2-constraint) (ang1min cl:number))
   (btHinge2Constraint_setLowerLimit (ff-pointer self) ang1min))
+
+
+(cl:defclass bt-sequential-impulse-constraint-solver(btConstraintSolver)
+  ((ff-pointer :reader ff-pointer)))
+
+(cl:defmethod initialize-instance :after ((obj bt-sequential-impulse-constraint-solver) &key)
+  (setf (slot-value obj 'ff-pointer) (new_btSequentialImpulseConstraintSolver)))
+
+(cl:defmethod solve-group ((self bt-sequential-impulse-constraint-solver) bodies (numBodies cl:integer) manifold (numManifolds cl:integer) constraints (numConstraints cl:integer) info debugDrawer (dispatcher bt-dispatcher))
+  (btSequentialImpulseConstraintSolver_solveGroup (ff-pointer self) bodies numBodies manifold numManifolds constraints numConstraints info debugDrawer dispatcher))
+
+(cl:defmethod reset ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_reset (ff-pointer self)))
+
+(cl:defmethod bt-rand2 ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_btRand2 (ff-pointer self)))
+
+(cl:defmethod bt-rand-int2 ((self bt-sequential-impulse-constraint-solver) (n cl:integer))
+  (btSequentialImpulseConstraintSolver_btRandInt2 (ff-pointer self) n))
+
+(cl:defmethod set-rand-seed ((self bt-sequential-impulse-constraint-solver) (seed cl:integer))
+  (btSequentialImpulseConstraintSolver_setRandSeed (ff-pointer self) seed))
+
+(cl:defmethod get-rand-seed ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getRandSeed (ff-pointer self)))
+
+(cl:defmethod get-solver-type ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getSolverType (ff-pointer self)))
+
+(cl:defmethod get-active-constraint-row-solver-generic ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getActiveConstraintRowSolverGeneric (ff-pointer self)))
+
+(cl:defmethod set-constraint-row-solver-generic ((self bt-sequential-impulse-constraint-solver) rowSolver)
+  (btSequentialImpulseConstraintSolver_setConstraintRowSolverGeneric (ff-pointer self) rowSolver))
+
+(cl:defmethod get-active-constraint-row-solver-lower-limit ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getActiveConstraintRowSolverLowerLimit (ff-pointer self)))
+
+(cl:defmethod set-constraint-row-solver-lower-limit ((self bt-sequential-impulse-constraint-solver) rowSolver)
+  (btSequentialImpulseConstraintSolver_setConstraintRowSolverLowerLimit (ff-pointer self) rowSolver))
+
+(cl:defmethod get-scalar-constraint-row-solver-generic ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getScalarConstraintRowSolverGeneric (ff-pointer self)))
+
+(cl:defmethod get-sse2-constraint-row-solver-generic ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getSSE2ConstraintRowSolverGeneric (ff-pointer self)))
+
+(cl:defmethod get-sse4-1-constraint-row-solver-generic ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getSSE4_1ConstraintRowSolverGeneric (ff-pointer self)))
+
+(cl:defmethod get-scalar-constraint-row-solver-lower-limit ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getScalarConstraintRowSolverLowerLimit (ff-pointer self)))
+
+(cl:defmethod get-sse2-constraint-row-solver-lower-limit ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getSSE2ConstraintRowSolverLowerLimit (ff-pointer self)))
+
+(cl:defmethod get-sse4-1-constraint-row-solver-lower-limit ((self bt-sequential-impulse-constraint-solver))
+  (btSequentialImpulseConstraintSolver_getSSE4_1ConstraintRowSolverLowerLimit (ff-pointer self)))
 
 
 (cl:defclass bt-soft-body(btCollisionObject)

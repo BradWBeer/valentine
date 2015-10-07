@@ -160,7 +160,7 @@ struct Node : Feature
 %include "BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h"
 %include "BulletDynamics/ConstraintSolver/btUniversalConstraint.h"
 %include "BulletDynamics/ConstraintSolver/btHinge2Constraint.h"
-#%include "BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+%include "BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
 
 %ignore btSoftBody::m_ndbvt;
 %ignore btSoftBody::m_cdbvt;

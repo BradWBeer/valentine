@@ -21233,6 +21233,319 @@ EXPORT void _wrap_delete_btHinge2Constraint (btHinge2Constraint *larg1) {
 }
 
 
+EXPORT btSequentialImpulseConstraintSolver *_wrap_new_btSequentialImpulseConstraintSolver () {
+  btSequentialImpulseConstraintSolver * lresult = (btSequentialImpulseConstraintSolver *)0 ;
+  btSequentialImpulseConstraintSolver *result = 0 ;
+  
+  try {
+    result = (btSequentialImpulseConstraintSolver *)new btSequentialImpulseConstraintSolver();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSequentialImpulseConstraintSolver *)0;
+  }
+}
+
+
+EXPORT void _wrap_delete_btSequentialImpulseConstraintSolver (btSequentialImpulseConstraintSolver *larg1) {
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  
+  arg1 = larg1;
+  try {
+    delete arg1;
+    
+  } catch (...) {
+    
+  }
+}
+
+
+EXPORT btScalar _wrap_btSequentialImpulseConstraintSolver_solveGroup (btSequentialImpulseConstraintSolver *larg1, btCollisionObject **larg2, int larg3, btPersistentManifold **larg4, int larg5, btTypedConstraint **larg6, int larg7, btContactSolverInfo *larg8, btIDebugDraw *larg9, btDispatcher *larg10) {
+  btScalar lresult = (btScalar)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btCollisionObject **arg2 = (btCollisionObject **) 0 ;
+  int arg3 ;
+  btPersistentManifold **arg4 = (btPersistentManifold **) 0 ;
+  int arg5 ;
+  btTypedConstraint **arg6 = (btTypedConstraint **) 0 ;
+  int arg7 ;
+  btContactSolverInfo *arg8 = 0 ;
+  btIDebugDraw *arg9 = (btIDebugDraw *) 0 ;
+  btDispatcher *arg10 = (btDispatcher *) 0 ;
+  btScalar result;
+  
+  arg1 = larg1;
+  arg2 = larg2;
+  arg3 = larg3;
+  arg4 = larg4;
+  arg5 = larg5;
+  arg6 = larg6;
+  arg7 = larg7;
+  arg8 = larg8;
+  arg9 = larg9;
+  arg10 = larg10;
+  try {
+    result = (btScalar)(arg1)->solveGroup(arg2,arg3,arg4,arg5,arg6,arg7,(btContactSolverInfo const &)*arg8,arg9,arg10);
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btScalar)0;
+  }
+}
+
+
+EXPORT void _wrap_btSequentialImpulseConstraintSolver_reset (btSequentialImpulseConstraintSolver *larg1) {
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  
+  arg1 = larg1;
+  try {
+    (arg1)->reset();
+    
+  } catch (...) {
+    
+  }
+}
+
+
+EXPORT unsigned long _wrap_btSequentialImpulseConstraintSolver_btRand2 (btSequentialImpulseConstraintSolver *larg1) {
+  unsigned long lresult = (unsigned long)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  unsigned long result;
+  
+  arg1 = larg1;
+  try {
+    result = (unsigned long)(arg1)->btRand2();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (unsigned long)0;
+  }
+}
+
+
+EXPORT int _wrap_btSequentialImpulseConstraintSolver_btRandInt2 (btSequentialImpulseConstraintSolver *larg1, int larg2) {
+  int lresult = (int)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  int arg2 ;
+  int result;
+  
+  arg1 = larg1;
+  arg2 = larg2;
+  try {
+    result = (int)(arg1)->btRandInt2(arg2);
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (int)0;
+  }
+}
+
+
+EXPORT void _wrap_btSequentialImpulseConstraintSolver_setRandSeed (btSequentialImpulseConstraintSolver *larg1, unsigned long larg2) {
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  unsigned long arg2 ;
+  
+  arg1 = larg1;
+  arg2 = larg2;
+  try {
+    (arg1)->setRandSeed(arg2);
+    
+  } catch (...) {
+    
+  }
+}
+
+
+EXPORT unsigned long _wrap_btSequentialImpulseConstraintSolver_getRandSeed (btSequentialImpulseConstraintSolver *larg1) {
+  unsigned long lresult = (unsigned long)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  unsigned long result;
+  
+  arg1 = larg1;
+  try {
+    result = (unsigned long)((btSequentialImpulseConstraintSolver const *)arg1)->getRandSeed();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (unsigned long)0;
+  }
+}
+
+
+EXPORT btConstraintSolverType _wrap_btSequentialImpulseConstraintSolver_getSolverType (btSequentialImpulseConstraintSolver *larg1) {
+  btConstraintSolverType lresult = (btConstraintSolverType)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btConstraintSolverType result;
+  
+  arg1 = larg1;
+  try {
+    result = (btConstraintSolverType)((btSequentialImpulseConstraintSolver const *)arg1)->getSolverType();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btConstraintSolverType)0;
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getActiveConstraintRowSolverGeneric (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getActiveConstraintRowSolverGeneric();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT void _wrap_btSequentialImpulseConstraintSolver_setConstraintRowSolverGeneric (btSequentialImpulseConstraintSolver *larg1, btSingleConstraintRowSolver larg2) {
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver arg2 = (btSingleConstraintRowSolver) 0 ;
+  
+  arg1 = larg1;
+  arg2 = larg2;
+  try {
+    (arg1)->setConstraintRowSolverGeneric(arg2);
+    
+  } catch (...) {
+    
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getActiveConstraintRowSolverLowerLimit (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getActiveConstraintRowSolverLowerLimit();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT void _wrap_btSequentialImpulseConstraintSolver_setConstraintRowSolverLowerLimit (btSequentialImpulseConstraintSolver *larg1, btSingleConstraintRowSolver larg2) {
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver arg2 = (btSingleConstraintRowSolver) 0 ;
+  
+  arg1 = larg1;
+  arg2 = larg2;
+  try {
+    (arg1)->setConstraintRowSolverLowerLimit(arg2);
+    
+  } catch (...) {
+    
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getScalarConstraintRowSolverGeneric (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getScalarConstraintRowSolverGeneric();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getSSE2ConstraintRowSolverGeneric (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getSSE2ConstraintRowSolverGeneric();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getSSE4_1ConstraintRowSolverGeneric (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getSSE4_1ConstraintRowSolverGeneric();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getScalarConstraintRowSolverLowerLimit (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getScalarConstraintRowSolverLowerLimit();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getSSE2ConstraintRowSolverLowerLimit (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getSSE2ConstraintRowSolverLowerLimit();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
+EXPORT btSingleConstraintRowSolver _wrap_btSequentialImpulseConstraintSolver_getSSE4_1ConstraintRowSolverLowerLimit (btSequentialImpulseConstraintSolver *larg1) {
+  btSingleConstraintRowSolver lresult = (btSingleConstraintRowSolver)0 ;
+  btSequentialImpulseConstraintSolver *arg1 = (btSequentialImpulseConstraintSolver *) 0 ;
+  btSingleConstraintRowSolver result;
+  
+  arg1 = larg1;
+  try {
+    result = (btSingleConstraintRowSolver)(arg1)->getSSE4_1ConstraintRowSolverLowerLimit();
+    lresult = result;
+    return lresult;
+  } catch (...) {
+    return (btSingleConstraintRowSolver)0;
+  }
+}
+
+
 EXPORT void _wrap_btSoftBody_m_collisionDisabledObjects_set (btSoftBody *larg1, btAlignedObjectArray< btCollisionObject const * > *larg2) {
   btSoftBody *arg1 = (btSoftBody *) 0 ;
   btAlignedObjectArray< btCollisionObject const * > *arg2 = (btAlignedObjectArray< btCollisionObject const * > *) 0 ;
