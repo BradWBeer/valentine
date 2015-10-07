@@ -1,3 +1,4 @@
+(in-package :valentine) 
 
 (cl:defclass bt-vector3()
   ((ff-pointer :reader ff-pointer)))
@@ -36,7 +37,7 @@
 (cl:defmethod length2 ((self bt-vector3))
   (btVector3_length2 (ff-pointer self)))
 
-(cl:defmethod length ((self bt-vector3))
+(cl:defmethod _length ((self bt-vector3))
   (btVector3_length (ff-pointer self)))
 
 (cl:defmethod norm ((self bt-vector3))
@@ -141,8 +142,8 @@
 (cl:defmethod set-min ((self bt-vector3) (other bt-vector3))
   (btVector3_setMin (ff-pointer self) (ff-pointer other)))
 
-(cl:defmethod set-value ((self bt-vector3) _x _y _z)
-  (btVector3_setValue (ff-pointer self) _x _y _z))
+;; (cl:defmethod set-value ((self bt-vector3) _x _y _z)
+;;   (btVector3_setValue (ff-pointer self) _x _y _z))
 
 (cl:defmethod get-skew-symmetric-matrix ((self bt-vector3) (v0 bt-vector3) (v1 bt-vector3) (v2 bt-vector3))
   (btVector3_getSkewSymmetricMatrix (ff-pointer self) (ff-pointer v0) (ff-pointer v1) (ff-pointer v2)))
@@ -156,8 +157,8 @@
 (cl:defmethod fuzzy-zero ((self bt-vector3))
   (btVector3_fuzzyZero (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-vector3) dataOut)
-  (btVector3_serialize (ff-pointer self) dataOut))
+;; (cl:defmethod serialize ((self bt-vector3) dataOut)
+;;   (btVector3_serialize (ff-pointer self) dataOut))
 
 (cl:defmethod de-serialize ((self bt-vector3) dataIn)
   (btVector3_deSerialize (ff-pointer self) dataIn))
@@ -208,8 +209,8 @@
 (cl:defmethod closest-axis4 ((self bt-vector4))
   (btVector4_closestAxis4 (ff-pointer self)))
 
-(cl:defmethod set-value ((self bt-vector4) _x _y _z _w)
-  (btVector4_setValue (ff-pointer self) _x _y _z _w))
+;; (cl:defmethod set-value ((self bt-vector4) _x _y _z _w)
+;;   (btVector4_setValue (ff-pointer self) _x _y _z _w))
 
 
 (cl:defclass bt-quad-word()
@@ -256,11 +257,11 @@
 (cl:defmethod != ((self bt-quad-word) (other bt-quad-word))
   (btQuadWord___ne__ (ff-pointer self) (ff-pointer other)))
 
-(cl:defmethod set-value ((self bt-quad-word) _x _y _z)
-  (btQuadWord_setValue (ff-pointer self) _x _y _z))
+;; (cl:defmethod set-value ((self bt-quad-word) _x _y _z)
+;;   (btQuadWord_setValue (ff-pointer self) _x _y _z))
 
-(cl:defmethod set-value ((self bt-quad-word) _x _y _z _w)
-  (btQuadWord_setValue (ff-pointer self) _x _y _z _w))
+;; (cl:defmethod set-value ((self bt-quad-word) _x _y _z _w)
+;;   (btQuadWord_setValue (ff-pointer self) _x _y _z _w))
 
 (cl:defmethod initialize-instance :after ((obj bt-quad-word) &key)
   (setf (slot-value obj 'ff-pointer) (new_btQuadWord)))
@@ -293,8 +294,8 @@
 (cl:defmethod initialize-instance :after ((obj bt-quaternion) &key yaw pitch roll)
   (setf (slot-value obj 'ff-pointer) (new_btQuaternion yaw pitch roll)))
 
-(cl:defmethod set-rotation ((self bt-quaternion) (axis bt-vector3) _angle)
-  (btQuaternion_setRotation (ff-pointer self) axis _angle))
+;; (cl:defmethod set-rotation ((self bt-quaternion) (axis bt-vector3) _angle)
+;;   (btQuaternion_setRotation (ff-pointer self) axis _angle))
 
 (cl:defmethod set-euler ((self bt-quaternion) yaw pitch roll)
   (btQuaternion_setEuler (ff-pointer self) yaw pitch roll))
@@ -324,7 +325,7 @@
 (cl:defmethod length2 ((self bt-quaternion))
   (btQuaternion_length2 (ff-pointer self)))
 
-(cl:defmethod length ((self bt-quaternion))
+(cl:defmethod _length ((self bt-quaternion))
   (btQuaternion_length (ff-pointer self)))
 
 (cl:defmethod normalize ((self bt-quaternion))
@@ -367,13 +368,13 @@
 (cl:defmethod + ((self bt-quaternion) (q2 bt-quaternion))
   (btQuaternion___add__ (ff-pointer self) (ff-pointer q2)))
 
-(cl:shadow "-")
-(cl:defmethod - ((self bt-quaternion) (q2 bt-quaternion))
-  (btQuaternion___sub__ (ff-pointer self) (ff-pointer q2)))
+;; (cl:shadow "-")
+;; (cl:defmethod - ((self bt-quaternion) (q2 bt-quaternion))
+;;   (btQuaternion___sub__ (ff-pointer self) (ff-pointer q2)))
 
-(cl:shadow "-")
-(cl:defmethod - ((self bt-quaternion))
-  (btQuaternion___neg__ (ff-pointer self)))
+;; (cl:shadow "-")
+;; (cl:defmethod - ((self bt-quaternion))
+;;   (btQuaternion___neg__ (ff-pointer self)))
 
 (cl:defmethod farthest ((self bt-quaternion) (qd bt-quaternion))
   (btQuaternion_farthest (ff-pointer self) (ff-pointer qd)))
@@ -387,8 +388,8 @@
 (cl:defmethod get-w ((self bt-quaternion))
   (btQuaternion_getW (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-quaternion) dataOut)
-  (btQuaternion_serialize (ff-pointer self) dataOut))
+;; (cl:defmethod serialize ((self bt-quaternion) dataOut)
+;;   (btQuaternion_serialize (ff-pointer self) dataOut))
 
 (cl:defmethod de-serialize ((self bt-quaternion) dataIn)
   (btQuaternion_deSerialize (ff-pointer self) dataIn))
@@ -434,9 +435,9 @@
 (cl:defmethod mult ((self bt-transform) (t1 bt-transform) (t2 bt-transform))
   (btTransform_mult (ff-pointer self) (ff-pointer t1) (ff-pointer t2)))
 
-(cl:shadow "()")
-(cl:defmethod () ((self bt-transform) (x bt-vector3))
-  (btTransform___funcall__ (ff-pointer self) x))
+;; (cl:shadow "()")
+;; (cl:defmethod () ((self bt-transform) (x bt-vector3))
+;;   (btTransform___funcall__ (ff-pointer self) x))
 
 (cl:shadow "*")
 (cl:defmethod * ((self bt-transform) (x bt-vector3))
@@ -458,8 +459,8 @@
 (cl:defmethod get-origin ((self bt-transform))
   (btTransform_getOrigin (ff-pointer self)))
 
-(cl:defmethod get-rotation ((self bt-transform))
-  (btTransform_getRotation (ff-pointer self)))
+;; (cl:defmethod get-rotation ((self bt-transform))
+;;   (btTransform_getRotation (ff-pointer self)))
 
 (cl:defmethod set-from-open-glmatrix ((self bt-transform) m)
   (btTransform_setFromOpenGLMatrix (ff-pointer self) m))
@@ -476,8 +477,8 @@
 (cl:defmethod set-basis ((self bt-transform) basis)
   (btTransform_setBasis (ff-pointer self) basis))
 
-(cl:defmethod set-rotation ((self bt-transform) (q bt-quaternion))
-  (btTransform_setRotation (ff-pointer self) q))
+;; (cl:defmethod set-rotation ((self bt-transform) (q bt-quaternion))
+;;   (btTransform_setRotation (ff-pointer self) q))
 
 (cl:defmethod set-identity ((self bt-transform))
   (btTransform_setIdentity (ff-pointer self)))
@@ -496,8 +497,8 @@
 (cl:defmethod * ((self bt-transform) (t-arg1 bt-transform))
   (btTransform___mul__ (ff-pointer self) (ff-pointer t-arg1)))
 
-(cl:defmethod serialize ((self bt-transform) dataOut)
-  (btTransform_serialize (ff-pointer self) dataOut))
+;; (cl:defmethod serialize ((self bt-transform) dataOut)
+;;   (btTransform_serialize (ff-pointer self) dataOut))
 
 (cl:defmethod serialize-float ((self bt-transform) dataOut)
   (btTransform_serializeFloat (ff-pointer self) dataOut))
@@ -560,11 +561,11 @@
 (cl:defmethod set-from-open-glsub-matrix ((self bt-matrix3x3) m)
   (btMatrix3x3_setFromOpenGLSubMatrix (ff-pointer self) m))
 
-(cl:defmethod set-value ((self bt-matrix3x3) xx xy xz yx yy yz zx zy zz)
-  (btMatrix3x3_setValue (ff-pointer self) xx xy xz yx yy yz zx zy zz))
+;; (cl:defmethod set-value ((self bt-matrix3x3) xx xy xz yx yy yz zx zy zz)
+;;   (btMatrix3x3_setValue (ff-pointer self) xx xy xz yx yy yz zx zy zz))
 
-(cl:defmethod set-rotation ((self bt-matrix3x3) (q bt-quaternion))
-  (btMatrix3x3_setRotation (ff-pointer self) q))
+;; (cl:defmethod set-rotation ((self bt-matrix3x3) (q bt-quaternion))
+;;   (btMatrix3x3_setRotation (ff-pointer self) q))
 
 (cl:defmethod set-euler-ypr ((self bt-matrix3x3) yaw pitch roll)
   (btMatrix3x3_setEulerYPR (ff-pointer self) yaw pitch roll))
@@ -578,17 +579,17 @@
 (cl:defmethod get-open-glsub-matrix ((self bt-matrix3x3) m)
   (btMatrix3x3_getOpenGLSubMatrix (ff-pointer self) m))
 
-(cl:defmethod get-rotation ((self bt-matrix3x3) (q bt-quaternion))
-  (btMatrix3x3_getRotation (ff-pointer self) q))
+;; (cl:defmethod get-rotation ((self bt-matrix3x3) (q bt-quaternion))
+;;   (btMatrix3x3_getRotation (ff-pointer self) q))
 
-(cl:defmethod get-euler-ypr ((self bt-matrix3x3) yaw pitch roll)
-  (btMatrix3x3_getEulerYPR (ff-pointer self) yaw pitch roll))
+;; (cl:defmethod get-euler-ypr ((self bt-matrix3x3) yaw pitch roll)
+;;   (btMatrix3x3_getEulerYPR (ff-pointer self) yaw pitch roll))
 
-(cl:defmethod get-euler-zyx ((self bt-matrix3x3) yaw pitch roll (solution_number cl:integer))
-  (btMatrix3x3_getEulerZYX (ff-pointer self) yaw pitch roll solution_number))
+;; (cl:defmethod get-euler-zyx ((self bt-matrix3x3) yaw pitch roll (solution_number cl:integer))
+;;   (btMatrix3x3_getEulerZYX (ff-pointer self) yaw pitch roll solution_number))
 
-(cl:defmethod get-euler-zyx ((self bt-matrix3x3) yaw pitch roll)
-  (btMatrix3x3_getEulerZYX (ff-pointer self) yaw pitch roll))
+;; (cl:defmethod get-euler-zyx ((self bt-matrix3x3) yaw pitch roll)
+;;   (btMatrix3x3_getEulerZYX (ff-pointer self) yaw pitch roll))
 
 (cl:defmethod scaled ((self bt-matrix3x3) (s bt-vector3))
   (btMatrix3x3_scaled (ff-pointer self) s))
@@ -632,8 +633,8 @@
 (cl:defmethod cofac ((self bt-matrix3x3) (r1 cl:integer) (c1 cl:integer) (r2 cl:integer) (c2 cl:integer))
   (btMatrix3x3_cofac (ff-pointer self) r1 c1 r2 c2))
 
-(cl:defmethod serialize ((self bt-matrix3x3) dataOut)
-  (btMatrix3x3_serialize (ff-pointer self) dataOut))
+;; (cl:defmethod serialize ((self bt-matrix3x3) dataOut)
+;;   (btMatrix3x3_serialize (ff-pointer self) dataOut))
 
 (cl:defmethod serialize-float ((self bt-matrix3x3) dataOut)
   (btMatrix3x3_serializeFloat (ff-pointer self) dataOut))
@@ -661,9 +662,9 @@
 (cl:defclass bt-broadphase-pair-sort-predicate()
   ((ff-pointer :reader ff-pointer)))
 
-(cl:shadow "()")
-(cl:defmethod () ((self bt-broadphase-pair-sort-predicate) a b)
-  (btBroadphasePairSortPredicate___funcall__ (ff-pointer self) a b))
+;; (cl:shadow "()")
+;; (cl:defmethod () ((self bt-broadphase-pair-sort-predicate) a b)
+;;   (btBroadphasePairSortPredicate___funcall__ (ff-pointer self) a b))
 
 (cl:defmethod initialize-instance :after ((obj bt-broadphase-pair-sort-predicate) &key)
   (setf (slot-value obj 'ff-pointer) (new_btBroadphasePairSortPredicate)))
@@ -684,14 +685,14 @@
 (cl:defmethod get-aabb ((self bt-broadphase-interface) proxy (aabbMin bt-vector3) (aabbMax bt-vector3))
   (btBroadphaseInterface_getAabb (ff-pointer self) proxy aabbMin aabbMax))
 
-(cl:defmethod ray-test ((self bt-broadphase-interface) (rayFrom bt-vector3) (rayTo bt-vector3) rayCallback (aabbMin bt-vector3) (aabbMax bt-vector3))
-  (btBroadphaseInterface_rayTest (ff-pointer self) rayFrom rayTo rayCallback aabbMin aabbMax))
+;; (cl:defmethod ray-test ((self bt-broadphase-interface) (rayFrom bt-vector3) (rayTo bt-vector3) rayCallback (aabbMin bt-vector3) (aabbMax bt-vector3))
+;;   (btBroadphaseInterface_rayTest (ff-pointer self) rayFrom rayTo rayCallback aabbMin aabbMax))
 
-(cl:defmethod ray-test ((self bt-broadphase-interface) (rayFrom bt-vector3) (rayTo bt-vector3) rayCallback (aabbMin bt-vector3))
-  (btBroadphaseInterface_rayTest (ff-pointer self) rayFrom rayTo rayCallback aabbMin))
+;; (cl:defmethod ray-test ((self bt-broadphase-interface) (rayFrom bt-vector3) (rayTo bt-vector3) rayCallback (aabbMin bt-vector3))
+;;   (btBroadphaseInterface_rayTest (ff-pointer self) rayFrom rayTo rayCallback aabbMin))
 
-(cl:defmethod ray-test ((self bt-broadphase-interface) (rayFrom bt-vector3) (rayTo bt-vector3) rayCallback)
-  (btBroadphaseInterface_rayTest (ff-pointer self) rayFrom rayTo rayCallback))
+;; (cl:defmethod ray-test ((self bt-broadphase-interface) (rayFrom bt-vector3) (rayTo bt-vector3) rayCallback)
+;;   (btBroadphaseInterface_rayTest (ff-pointer self) rayFrom rayTo rayCallback))
 
 (cl:defmethod aabb-test ((self bt-broadphase-interface) (aabbMin bt-vector3) (aabbMax bt-vector3) callback)
   (btBroadphaseInterface_aabbTest (ff-pointer self) aabbMin aabbMax callback))
@@ -718,11 +719,11 @@
 (cl:defclass bt-dispatcher()
   ((ff-pointer :reader ff-pointer)))
 
-(cl:defmethod find-algorithm ((self bt-dispatcher) body0Wrap body1Wrap sharedManifold)
-  (btDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap sharedManifold))
+;; (cl:defmethod find-algorithm ((self bt-dispatcher) body0Wrap body1Wrap sharedManifold)
+;;   (btDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap sharedManifold))
 
-(cl:defmethod find-algorithm ((self bt-dispatcher) body0Wrap body1Wrap)
-  (btDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap))
+;; (cl:defmethod find-algorithm ((self bt-dispatcher) body0Wrap body1Wrap)
+;;   (btDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap))
 
 (cl:defmethod get-new-manifold ((self bt-dispatcher) b0 b1)
   (btDispatcher_getNewManifold (ff-pointer self) b0 b1))
@@ -798,23 +799,23 @@
 (cl:defmethod get-collision-algorithm-create-func ((self bt-default-collision-configuration) (proxyType0 cl:integer) (proxyType1 cl:integer))
   (btDefaultCollisionConfiguration_getCollisionAlgorithmCreateFunc (ff-pointer self) proxyType0 proxyType1))
 
-(cl:defmethod set-convex-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer) (minimumPointsPerturbationThreshold cl:integer))
-  (btDefaultCollisionConfiguration_setConvexConvexMultipointIterations (ff-pointer self) numPerturbationIterations minimumPointsPerturbationThreshold))
+;; (cl:defmethod set-convex-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer) (minimumPointsPerturbationThreshold cl:integer))
+;;   (btDefaultCollisionConfiguration_setConvexConvexMultipointIterations (ff-pointer self) numPerturbationIterations minimumPointsPerturbationThreshold))
 
-(cl:defmethod set-convex-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer))
-  (btDefaultCollisionConfiguration_setConvexConvexMultipointIterations (ff-pointer self) numPerturbationIterations))
+;; (cl:defmethod set-convex-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer))
+;;   (btDefaultCollisionConfiguration_setConvexConvexMultipointIterations (ff-pointer self) numPerturbationIterations))
 
-(cl:defmethod set-convex-convex-multipoint-iterations ((self bt-default-collision-configuration))
-  (btDefaultCollisionConfiguration_setConvexConvexMultipointIterations (ff-pointer self)))
+;; (cl:defmethod set-convex-convex-multipoint-iterations ((self bt-default-collision-configuration))
+;;   (btDefaultCollisionConfiguration_setConvexConvexMultipointIterations (ff-pointer self)))
 
-(cl:defmethod set-plane-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer) (minimumPointsPerturbationThreshold cl:integer))
-  (btDefaultCollisionConfiguration_setPlaneConvexMultipointIterations (ff-pointer self) numPerturbationIterations minimumPointsPerturbationThreshold))
+;; (cl:defmethod set-plane-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer) (minimumPointsPerturbationThreshold cl:integer))
+;;   (btDefaultCollisionConfiguration_setPlaneConvexMultipointIterations (ff-pointer self) numPerturbationIterations minimumPointsPerturbationThreshold))
 
-(cl:defmethod set-plane-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer))
-  (btDefaultCollisionConfiguration_setPlaneConvexMultipointIterations (ff-pointer self) numPerturbationIterations))
+;; (cl:defmethod set-plane-convex-multipoint-iterations ((self bt-default-collision-configuration) (numPerturbationIterations cl:integer))
+;;   (btDefaultCollisionConfiguration_setPlaneConvexMultipointIterations (ff-pointer self) numPerturbationIterations))
 
-(cl:defmethod set-plane-convex-multipoint-iterations ((self bt-default-collision-configuration))
-  (btDefaultCollisionConfiguration_setPlaneConvexMultipointIterations (ff-pointer self)))
+;; (cl:defmethod set-plane-convex-multipoint-iterations ((self bt-default-collision-configuration))
+;;   (btDefaultCollisionConfiguration_setPlaneConvexMultipointIterations (ff-pointer self)))
 
 
 (cl:defclass bt-collision-dispatcher(btDispatcher)
@@ -853,11 +854,11 @@
 (cl:defmethod clear-manifold ((self bt-collision-dispatcher) manifold)
   (btCollisionDispatcher_clearManifold (ff-pointer self) manifold))
 
-(cl:defmethod find-algorithm ((self bt-collision-dispatcher) body0Wrap body1Wrap sharedManifold)
-  (btCollisionDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap sharedManifold))
+;; (cl:defmethod find-algorithm ((self bt-collision-dispatcher) body0Wrap body1Wrap sharedManifold)
+;;   (btCollisionDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap sharedManifold))
 
-(cl:defmethod find-algorithm ((self bt-collision-dispatcher) body0Wrap body1Wrap)
-  (btCollisionDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap))
+;; (cl:defmethod find-algorithm ((self bt-collision-dispatcher) body0Wrap body1Wrap)
+;;   (btCollisionDispatcher_findAlgorithm (ff-pointer self) body0Wrap body1Wrap))
 
 (cl:defmethod needs-collision ((self bt-collision-dispatcher) body0 body1)
   (btCollisionDispatcher_needsCollision (ff-pointer self) body0 body1))
@@ -905,14 +906,14 @@
 (cl:defmethod get-anisotropic-friction ((self bt-collision-object))
   (btCollisionObject_getAnisotropicFriction (ff-pointer self)))
 
-(cl:defmethod set-anisotropic-friction ((self bt-collision-object) (anisotropicFriction bt-vector3) (frictionMode cl:integer))
-  (btCollisionObject_setAnisotropicFriction (ff-pointer self) anisotropicFriction frictionMode))
+;; (cl:defmethod set-anisotropic-friction ((self bt-collision-object) (anisotropicFriction bt-vector3) (frictionMode cl:integer))
+;;   (btCollisionObject_setAnisotropicFriction (ff-pointer self) anisotropicFriction frictionMode))
 
-(cl:defmethod set-anisotropic-friction ((self bt-collision-object) (anisotropicFriction bt-vector3))
-  (btCollisionObject_setAnisotropicFriction (ff-pointer self) anisotropicFriction))
+;; (cl:defmethod set-anisotropic-friction ((self bt-collision-object) (anisotropicFriction bt-vector3))
+;;   (btCollisionObject_setAnisotropicFriction (ff-pointer self) anisotropicFriction))
 
-(cl:defmethod has-anisotropic-friction ((self bt-collision-object) (frictionMode cl:integer))
-  (btCollisionObject_hasAnisotropicFriction (ff-pointer self) frictionMode))
+;; (cl:defmethod has-anisotropic-friction ((self bt-collision-object) (frictionMode cl:integer))
+;;   (btCollisionObject_hasAnisotropicFriction (ff-pointer self) frictionMode))
 
 (cl:defmethod has-anisotropic-friction ((self bt-collision-object))
   (btCollisionObject_hasAnisotropicFriction (ff-pointer self)))
@@ -974,11 +975,11 @@
 (cl:defmethod force-activation-state ((self bt-collision-object) (newState cl:integer))
   (btCollisionObject_forceActivationState (ff-pointer self) newState))
 
-(cl:defmethod activate ((self bt-collision-object) (forceActivation t))
-  (btCollisionObject_activate (ff-pointer self) forceActivation))
+;; (cl:defmethod activate ((self bt-collision-object) (forceActivation t))
+;;   (btCollisionObject_activate (ff-pointer self) forceActivation))
 
-(cl:defmethod activate ((self bt-collision-object))
-  (btCollisionObject_activate (ff-pointer self)))
+;; (cl:defmethod activate ((self bt-collision-object))
+;;   (btCollisionObject_activate (ff-pointer self)))
 
 (cl:defmethod is-active ((self bt-collision-object))
   (btCollisionObject_isActive (ff-pointer self)))
@@ -1004,11 +1005,11 @@
 (cl:defmethod get-internal-type ((self bt-collision-object))
   (btCollisionObject_getInternalType (ff-pointer self)))
 
-(cl:defmethod get-world-transform ((self bt-collision-object))
-  (btCollisionObject_getWorldTransform (ff-pointer self)))
+;; (cl:defmethod get-world-transform ((self bt-collision-object))
+;;   (btCollisionObject_getWorldTransform (ff-pointer self)))
 
-(cl:defmethod get-world-transform ((self bt-collision-object))
-  (btCollisionObject_getWorldTransform (ff-pointer self)))
+;; (cl:defmethod get-world-transform ((self bt-collision-object))
+;;   (btCollisionObject_getWorldTransform (ff-pointer self)))
 
 (cl:defmethod set-world-transform ((self bt-collision-object) (worldTrans bt-transform))
   (btCollisionObject_setWorldTransform (ff-pointer self) worldTrans))
@@ -1103,8 +1104,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-collision-object))
   (btCollisionObject_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-collision-object) dataBuffer serializer)
-  (btCollisionObject_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-collision-object) dataBuffer serializer)
+;;   (btCollisionObject_serialize (ff-pointer self) dataBuffer serializer))
 
 (cl:defmethod serialize-single-object ((self bt-collision-object) serializer)
   (btCollisionObject_serializeSingleObject (ff-pointer self) serializer))
@@ -1158,14 +1159,14 @@
 (cl:defmethod get-num-collision-objects ((self bt-collision-world))
   (btCollisionWorld_getNumCollisionObjects (ff-pointer self)))
 
-(cl:defmethod ray-test ((self bt-collision-world) (rayFromWorld bt-vector3) (rayToWorld bt-vector3) resultCallback)
-  (btCollisionWorld_rayTest (ff-pointer self) rayFromWorld rayToWorld resultCallback))
+;; (cl:defmethod ray-test ((self bt-collision-world) (rayFromWorld bt-vector3) (rayToWorld bt-vector3) resultCallback)
+;;   (btCollisionWorld_rayTest (ff-pointer self) rayFromWorld rayToWorld resultCallback))
 
-(cl:defmethod convex-sweep-test ((self bt-collision-world) castShape (from bt-transform) (to bt-transform) resultCallback (allowedCcdPenetration cl:number))
-  (btCollisionWorld_convexSweepTest (ff-pointer self) castShape from to resultCallback allowedCcdPenetration))
+;; (cl:defmethod convex-sweep-test ((self bt-collision-world) castShape (from bt-transform) (to bt-transform) resultCallback (allowedCcdPenetration cl:number))
+;;   (btCollisionWorld_convexSweepTest (ff-pointer self) castShape from to resultCallback allowedCcdPenetration))
 
-(cl:defmethod convex-sweep-test ((self bt-collision-world) castShape (from bt-transform) (to bt-transform) resultCallback)
-  (btCollisionWorld_convexSweepTest (ff-pointer self) castShape from to resultCallback))
+;; (cl:defmethod convex-sweep-test ((self bt-collision-world) castShape (from bt-transform) (to bt-transform) resultCallback)
+;;   (btCollisionWorld_convexSweepTest (ff-pointer self) castShape from to resultCallback))
 
 (cl:defmethod contact-test ((self bt-collision-world) (colObj bt-collision-object) resultCallback)
   (btCollisionWorld_contactTest (ff-pointer self) colObj resultCallback))
@@ -1173,14 +1174,14 @@
 (cl:defmethod contact-pair-test ((self bt-collision-world) (colObjA bt-collision-object) (colObjB bt-collision-object) resultCallback)
   (btCollisionWorld_contactPairTest (ff-pointer self) colObjA colObjB resultCallback))
 
-(cl:defmethod add-collision-object ((self bt-collision-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer) (collisionFilterMask cl:integer))
-  (btCollisionWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup collisionFilterMask))
+;; (cl:defmethod add-collision-object ((self bt-collision-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer) (collisionFilterMask cl:integer))
+;;   (btCollisionWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup collisionFilterMask))
 
-(cl:defmethod add-collision-object ((self bt-collision-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer))
-  (btCollisionWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup))
+;; (cl:defmethod add-collision-object ((self bt-collision-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer))
+;;   (btCollisionWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup))
 
-(cl:defmethod add-collision-object ((self bt-collision-world) (collisionObject bt-collision-object))
-  (btCollisionWorld_addCollisionObject (ff-pointer self) collisionObject))
+;; (cl:defmethod add-collision-object ((self bt-collision-world) (collisionObject bt-collision-object))
+;;   (btCollisionWorld_addCollisionObject (ff-pointer self) collisionObject))
 
 (cl:defmethod get-collision-object-array ((self bt-collision-world))
   (btCollisionWorld_getCollisionObjectArray (ff-pointer self)))
@@ -1206,8 +1207,8 @@
 (cl:defmethod set-force-update-all-aabbs ((self bt-collision-world) (forceUpdateAllAabbs t))
   (btCollisionWorld_setForceUpdateAllAabbs (ff-pointer self) forceUpdateAllAabbs))
 
-(cl:defmethod serialize ((self bt-collision-world) serializer)
-  (btCollisionWorld_serialize (ff-pointer self) serializer))
+;; (cl:defmethod serialize ((self bt-collision-world) serializer)
+;;   (btCollisionWorld_serialize (ff-pointer self) serializer))
 
 
 (cl:defclass bt-collision-shape()
@@ -1291,8 +1292,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-collision-shape))
   (btCollisionShape_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-collision-shape) dataBuffer serializer)
-  (btCollisionShape_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-collision-shape) dataBuffer serializer)
+;;   (btCollisionShape_serialize (ff-pointer self) dataBuffer serializer))
 
 (cl:defmethod serialize-single-shape ((self bt-collision-shape) serializer)
   (btCollisionShape_serializeSingleShape (ff-pointer self) serializer))
@@ -1407,8 +1408,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-convex-internal-shape))
   (btConvexInternalShape_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-convex-internal-shape) dataBuffer serializer)
-  (btConvexInternalShape_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-convex-internal-shape) dataBuffer serializer)
+;;   (btConvexInternalShape_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-convex-internal-aabb-caching-shape(btConvexInternalShape)
@@ -1561,8 +1562,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-convex-hull-shape))
   (btConvexHullShape_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-convex-hull-shape) dataBuffer serializer)
-  (btConvexHullShape_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-convex-hull-shape) dataBuffer serializer)
+;;   (btConvexHullShape_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-sphere-shape(btConvexInternalShape)
@@ -1632,8 +1633,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-multi-sphere-shape))
   (btMultiSphereShape_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-multi-sphere-shape) dataBuffer serializer)
-  (btMultiSphereShape_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-multi-sphere-shape) dataBuffer serializer)
+;;   (btMultiSphereShape_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-concave-shape(btCollisionShape)
@@ -1682,8 +1683,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-static-plane-shape))
   (btStaticPlaneShape_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-static-plane-shape) dataBuffer serializer)
-  (btStaticPlaneShape_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-static-plane-shape) dataBuffer serializer)
+;;   (btStaticPlaneShape_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-box-shape(btPolyhedralConvexShape)
@@ -1904,14 +1905,14 @@
 (cl:defmethod get-gravity ((self bt-discrete-dynamics-world))
   (btDiscreteDynamicsWorld_getGravity (ff-pointer self)))
 
-(cl:defmethod add-collision-object ((self bt-discrete-dynamics-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer) (collisionFilterMask cl:integer))
-  (btDiscreteDynamicsWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup collisionFilterMask))
+;; (cl:defmethod add-collision-object ((self bt-discrete-dynamics-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer) (collisionFilterMask cl:integer))
+;;   (btDiscreteDynamicsWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup collisionFilterMask))
 
-(cl:defmethod add-collision-object ((self bt-discrete-dynamics-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer))
-  (btDiscreteDynamicsWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup))
+;; (cl:defmethod add-collision-object ((self bt-discrete-dynamics-world) (collisionObject bt-collision-object) (collisionFilterGroup cl:integer))
+;;   (btDiscreteDynamicsWorld_addCollisionObject (ff-pointer self) collisionObject collisionFilterGroup))
 
-(cl:defmethod add-collision-object ((self bt-discrete-dynamics-world) (collisionObject bt-collision-object))
-  (btDiscreteDynamicsWorld_addCollisionObject (ff-pointer self) collisionObject))
+;; (cl:defmethod add-collision-object ((self bt-discrete-dynamics-world) (collisionObject bt-collision-object))
+;;   (btDiscreteDynamicsWorld_addCollisionObject (ff-pointer self) collisionObject))
 
 (cl:defmethod add-rigid-body ((self bt-discrete-dynamics-world) body)
   (btDiscreteDynamicsWorld_addRigidBody (ff-pointer self) body))
@@ -1985,8 +1986,8 @@
 (cl:defmethod get-apply-speculative-contact-restitution ((self bt-discrete-dynamics-world))
   (btDiscreteDynamicsWorld_getApplySpeculativeContactRestitution (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-discrete-dynamics-world) serializer)
-  (btDiscreteDynamicsWorld_serialize (ff-pointer self) serializer))
+;; (cl:defmethod serialize ((self bt-discrete-dynamics-world) serializer)
+;;   (btDiscreteDynamicsWorld_serialize (ff-pointer self) serializer))
 
 (cl:defmethod set-latency-motion-state-interpolation ((self bt-discrete-dynamics-world) (latencyInterpolation t))
   (btDiscreteDynamicsWorld_setLatencyMotionStateInterpolation (ff-pointer self) latencyInterpolation))
@@ -2287,8 +2288,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-rigid-body))
   (btRigidBody_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-rigid-body) dataBuffer serializer)
-  (btRigidBody_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-rigid-body) dataBuffer serializer)
+;;   (btRigidBody_serialize (ff-pointer self) dataBuffer serializer))
 
 (cl:defmethod serialize-single-object ((self bt-rigid-body) serializer)
   (btRigidBody_serializeSingleObject (ff-pointer self) serializer))
@@ -2430,8 +2431,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-typed-constraint))
   (btTypedConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-typed-constraint) dataBuffer serializer)
-  (btTypedConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-typed-constraint) dataBuffer serializer)
+;;   (btTypedConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-angular-limit()
@@ -2555,8 +2556,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-point2-point-constraint))
   (btPoint2PointConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-point2-point-constraint) dataBuffer serializer)
-  (btPoint2PointConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-point2-point-constraint) dataBuffer serializer)
+;;   (btPoint2PointConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-hinge-constraint(btTypedConstraint)
@@ -2733,8 +2734,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-hinge-constraint))
   (btHingeConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-hinge-constraint) dataBuffer serializer)
-  (btHingeConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-hinge-constraint) dataBuffer serializer)
+;;   (btHingeConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-hinge-accumulated-angle-constraint(btHingeConstraint)
@@ -2915,8 +2916,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-cone-twist-constraint))
   (btConeTwistConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-cone-twist-constraint) dataBuffer serializer)
-  (btConeTwistConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-cone-twist-constraint) dataBuffer serializer)
+;;   (btConeTwistConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-rotational-limit-motor()
@@ -3245,8 +3246,8 @@
 (cl:defmethod get-angular-upper-limit ((self bt-generic6-dof-constraint) (angularUpper bt-vector3))
   (btGeneric6DofConstraint_getAngularUpperLimit (ff-pointer self) angularUpper))
 
-(cl:defmethod get-rotational-limit-motor ((self bt-generic6-dof-constraint) (index cl:integer))
-  (btGeneric6DofConstraint_getRotationalLimitMotor (ff-pointer self) index))
+;; (cl:defmethod get-rotational-limit-motor ((self bt-generic6-dof-constraint) (index cl:integer))
+;;   (btGeneric6DofConstraint_getRotationalLimitMotor (ff-pointer self) index))
 
 (cl:defmethod get-translational-limit-motor ((self bt-generic6-dof-constraint))
   (btGeneric6DofConstraint_getTranslationalLimitMotor (ff-pointer self)))
@@ -3290,8 +3291,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-generic6-dof-constraint))
   (btGeneric6DofConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-generic6-dof-constraint) dataBuffer serializer)
-  (btGeneric6DofConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-generic6-dof-constraint) dataBuffer serializer)
+;;   (btGeneric6DofConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-slider-constraint(btTypedConstraint)
@@ -3567,8 +3568,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-slider-constraint))
   (btSliderConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-slider-constraint) dataBuffer serializer)
-  (btSliderConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-slider-constraint) dataBuffer serializer)
+;;   (btSliderConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-generic6-dof-spring-constraint(btGeneric6DofConstraint)
@@ -3607,8 +3608,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-generic6-dof-spring-constraint))
   (btGeneric6DofSpringConstraint_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-generic6-dof-spring-constraint) dataBuffer serializer)
-  (btGeneric6DofSpringConstraint_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-generic6-dof-spring-constraint) dataBuffer serializer)
+;;   (btGeneric6DofSpringConstraint_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-universal-constraint(btGeneric6DofConstraint)
@@ -4151,8 +4152,8 @@
 (cl:defmethod cut-link ((self bt-soft-body) node0 node1 (position cl:number))
   (btSoftBody_cutLink (ff-pointer self) node0 node1 position))
 
-(cl:defmethod ray-test ((self bt-soft-body) (rayFrom bt-vector3) (rayTo bt-vector3) results)
-  (btSoftBody_rayTest (ff-pointer self) rayFrom rayTo results))
+;; (cl:defmethod ray-test ((self bt-soft-body) (rayFrom bt-vector3) (rayTo bt-vector3) results)
+;;   (btSoftBody_rayTest (ff-pointer self) rayFrom rayTo results))
 
 (cl:defmethod set-solver ((self bt-soft-body) preset)
   (btSoftBody_setSolver (ff-pointer self) preset))
@@ -4202,8 +4203,8 @@
 (cl:defmethod indices-to-pointers ((self bt-soft-body))
   (btSoftBody_indicesToPointers (ff-pointer self)))
 
-(cl:defmethod ray-test ((self bt-soft-body) (rayFrom bt-vector3) (rayTo bt-vector3) mint feature index (bcountonly t))
-  (btSoftBody_rayTest (ff-pointer self) rayFrom rayTo mint feature index bcountonly))
+;; (cl:defmethod ray-test ((self bt-soft-body) (rayFrom bt-vector3) (rayTo bt-vector3) mint feature index (bcountonly t))
+;;   (btSoftBody_rayTest (ff-pointer self) rayFrom rayTo mint feature index bcountonly))
 
 (cl:defmethod initialize-face-tree ((self bt-soft-body))
   (btSoftBody_initializeFaceTree (ff-pointer self)))
@@ -4262,8 +4263,8 @@
 (cl:defmethod calculate-serialize-buffer-size ((self bt-soft-body))
   (btSoftBody_calculateSerializeBufferSize (ff-pointer self)))
 
-(cl:defmethod serialize ((self bt-soft-body) dataBuffer serializer)
-  (btSoftBody_serialize (ff-pointer self) dataBuffer serializer))
+;; (cl:defmethod serialize ((self bt-soft-body) dataBuffer serializer)
+;;   (btSoftBody_serialize (ff-pointer self) dataBuffer serializer))
 
 
 (cl:defclass bt-soft-rigid-dynamics-world(btDiscreteDynamicsWorld)
@@ -4314,11 +4315,11 @@
 (cl:defmethod get-soft-body-array ((self bt-soft-rigid-dynamics-world))
   (btSoftRigidDynamicsWorld_getSoftBodyArray (ff-pointer self)))
 
-(cl:defmethod ray-test ((self bt-soft-rigid-dynamics-world) (rayFromWorld bt-vector3) (rayToWorld bt-vector3) resultCallback)
-  (btSoftRigidDynamicsWorld_rayTest (ff-pointer self) rayFromWorld rayToWorld resultCallback))
+;; (cl:defmethod ray-test ((self bt-soft-rigid-dynamics-world) (rayFromWorld bt-vector3) (rayToWorld bt-vector3) resultCallback)
+;;   (btSoftRigidDynamicsWorld_rayTest (ff-pointer self) rayFromWorld rayToWorld resultCallback))
 
-(cl:defmethod serialize ((self bt-soft-rigid-dynamics-world) serializer)
-  (btSoftRigidDynamicsWorld_serialize (ff-pointer self) serializer))
+;; (cl:defmethod serialize ((self bt-soft-rigid-dynamics-world) serializer)
+;;   (btSoftRigidDynamicsWorld_serialize (ff-pointer self) serializer))
 
 
 (cl:defclass bt-soft-body-solver()
