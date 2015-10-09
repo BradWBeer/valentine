@@ -3,12 +3,9 @@
 
 ## Notes
 
-* The CLOS file doesn't work yet. I'm having trouble finding *where* in the file the problem is.
+* You can build the bindings. You will need SWIG and g++. 
 
-* There are redefined constants. I'll figure that out later.
-
-* You can build the bindings...mostly. You will need SWIG and g++. And you will need to make a few manual changes to swigbullet.lisp
-
+* The CLOS file doesn't work yet. There are problems with package locks and methods with different numbers of arguments.
 
 ## To build: 
 
@@ -30,7 +27,7 @@
 
 * type: git clone git@github.com:BradWBeer/valentine.git
 
-* enter the valentine directory and type: make
+* enter the valentine directory and type: make clean all
 
 * go to the library.lisp file and point the library directory to your local-projects directory. (I know, I'll fix it!)
 
