@@ -14,7 +14,8 @@ BULLET_LIBS= $(BULLET_DIR)libBulletSoftBody$(BULLET_BUILD) $(BULLET_DIR)libBulle
 LIBS= -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath
 LDFLAGS= -shared 
 
-target= libbullet_wrap.so
+target= libbullet_wrap.so 
+lisp= swigbullet.lisp swigbullet-clos.lisp
 objects= bullet_wrap.o 
 
 .PRECIOUS: %_wrap.cxx
@@ -24,11 +25,14 @@ all: $(target)
 $(target): $(objects) 
 	$(CC) $(LDFLAGS) $(objects) -o $@ $(LIBS) $(LIBS)
 
-%_wrap.cxx: %.i
-	$(SWIG) $(SFLAGS) $(INCLUDES) -o $@ $< 
+%_wrap.cxx %.lisp %-clos.lisp: %.i
+	$(SWIG) $(SFLAGS) $(INCLUDES) -o $@ $<
+	$(SED)	-i '10 i\(in-package :valentine)' swigbullet.lisp
+	$(SED)	-i '1 i\(in-package :valentine)' swigbullet-clos.lisp
 	$(SED)  -i 's/#\.BT_ENABLE_GYROSCOPIC_FORCE_IMPLICIT_BODY/#.8/' swigbullet.lisp 
 	$(SED)  -i 's/( :pointer)/(_ :pointer)/p' swigbullet.lisp 
 	$(SED)  -i 's/("_wrap_length" length)/("_wrap_length" length1)/' swigbullet.lisp 
+
 
 %.o: %.cxx
 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
