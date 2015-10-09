@@ -1,42 +1,67 @@
 (ql:quickload :valentine)
 
-;; collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
+(defvar objects nil)
 
+;; initialization start
+
+;; 	///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
 (setf collision-Configuration (valentine::new_btDefaultCollisionConfiguration))
 
-;; use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
- (setf dispacher (valentine::new_btcollisiondispatcher collision-configuration ))
+;; 	///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
+(setf dispacher (valentine::new_btcollisiondispatcher collision-configuration ))
 
 
-;; btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
+;; 	///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
 (setf overlapping-pair-cache (cffi:foreign-alloc 'valentine::btdbvtbroadphase))
 
-;; the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
+;; 	///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
+;; 	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
 (setf solver (valentine::new_btsequentialimpulseconstraintsolver))
 
+
+;; 	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,overlappingPairCache,solver,collisionConfiguration);
 (setf dynamics-world (valentine::new_btdiscretedynamicsworld dispacher overlapping-pair-cache solver collision-configuration))
 
+;; 	dynamicsWorld->setGravity(btVector3(0,-10,0));
+
 (valentine::btdiscretedynamicsworld_setgravity
- dynamics-world (valentine::make-btVector3 0 10 0))
+ dynamics-world
+ (valentine::make-btvector3 0 -10 0))
 
-;; -----initialization_end-----
+;; initialization end
 
-;; create a few basic rigid bodies
-(setf groundShape (valentine::new_btboxshape (valentine::make-btvector3 50 50 50)))
+;; Create the ground.
+(setf ground-shape (valentine::new_btBoxShape
+		    (valentine::make-btvector3 50 50 50)))
 
-;; keep track of the shapes, we release memory at exit.
-;; make sure to re-use collision shapes among rigid bodies whenever possible!
-(setf collision-shapes nil)
-(push groundshape collision-shapes)
+;; Keep track of the shapes...
+(push ground-shape objects)
 
-(setf ground-transform (valentine::new_btTransform))
-(valentine::bttransform_setidentity ground-transform)
-(valentine::bttransform_setorigin ground-transform (valentine::make-btvector3 0 -56 0))
+(setf ground-transform (valentine::new_bttransform0))
+(valentine::btTransform_setIdentity ground-transform)
+(valentine::btTransform_setOrigin ground-transform (valentine::make-btvector3 0 -56 0))
 
-(cffi:with-foreign-object (mass :float)
-  (setf (cffi:mem-aref mass :float) (coerce 0 'single-float))
+ (let ((local-inertia (valentine::make-btVector3 0 0 0)))
+   (cffi:with-foreign-object (motion-state 'valentine::btDefaultMotionState)
 
-;; using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+     
+
+  ;;     (my-motion-state (valentine::new_
+  
+  ;; (setf myM
+  ;; )
+
+;; 	{
+;; 		btScalar mass(0.);
+
+;; 		//rigidbody is dynamic if and only if mass is non zero, otherwise static
+;; 		bool isDynamic = (mass != 0.f);
+
+;; 		btVector3 localInertia(0,0,0);
+;; 		if (isDynamic)
+;; 			groundShape->calculateLocalInertia(mass,localInertia);
+
+;; 		//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
 ;; 		btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
 ;; 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,myMotionState,groundShape,localInertia);
 ;; 		btRigidBody* body = new btRigidBody(rbInfo);
