@@ -214,8 +214,6 @@
 	(m_objectType :int)
 	(getObjectType :pointer))
 
-(cl:defconstant btVector3DataName "btVector3FloatData")
-
 (cffi:defcfun ("_wrap_btVector3_m_floats_set" btVector3_m_floats_set) :void
   (self :pointer)
   (m_floats :pointer))
@@ -604,8 +602,6 @@
 
 (cffi:defcfun ("_wrap_delete_btQuadWord" delete_btQuadWord) :void
   (self :pointer))
-
-(cl:defconstant btQuaternionDataName "btQuaternionFloatData")
 
 (cffi:defcfun ("_wrap_new_btQuaternion__SWIG_0" new_btQuaternion) :pointer)
 
@@ -1687,8 +1683,6 @@
 (cl:defconstant DISABLE_DEACTIVATION 4)
 
 (cl:defconstant DISABLE_SIMULATION 5)
-
-(cl:defconstant btCollisionObjectDataName "btCollisionObjectFloatData")
 
 (cffi:defcenum CollisionFlags
 	(:CF_STATIC_OBJECT #.1)
@@ -3362,8 +3356,6 @@
 (cffi:defcvar ("gDisableDeactivation" gDisableDeactivation)
  :pointer)
 
-(cl:defconstant btRigidBodyDataName "btRigidBodyFloatData")
-
 (cffi:defcenum btRigidBodyFlags
 	(:BT_DISABLE_WORLD_GRAVITY #.1)
 	(:BT_ENABLE_GYROSCOPIC_FORCE_EXPLICIT #.2)
@@ -3752,8 +3744,6 @@
 (cffi:defcfun ("_wrap_btConstraintSolver_getSolverType" btConstraintSolver_getSolverType) btConstraintSolverType
   (self :pointer))
 
-(cl:defconstant btTypedConstraintDataName "btTypedConstraintFloatData")
-
 (cffi:defcenum btTypedConstraintType
 	(:POINT2POINT_CONSTRAINT_TYPE #.3)
 	:HINGE_CONSTRAINT_TYPE
@@ -4050,8 +4040,6 @@
 (cffi:defcfun ("_wrap_delete_btAngularLimit" delete_btAngularLimit) :void
   (self :pointer))
 
-(cl:defconstant btPoint2PointConstraintDataName "btPoint2PointConstraintFloatData")
-
 (cffi:defcstruct btConstraintSetting
 	(m_tau :float)
 	(m_damping :float)
@@ -4171,8 +4159,6 @@
 	(m_pivotInB btVector3DoubleData))
 
 (cl:defconstant _BT_USE_CENTER_LIMIT_ 1)
-
-(cl:defconstant btHingeConstraintDataName "btHingeConstraintFloatData")
 
 (cffi:defcenum btHingeFlags
 	(:BT_HINGE_FLAGS_CFM_STOP #.1)
@@ -4554,8 +4540,6 @@
 	(m_relaxationFactor :double)
 	(m_padding1 :pointer))
 
-(cl:defconstant btConeTwistConstraintDataName "btConeTwistConstraintData")
-
 (cffi:defcenum btConeTwistFlags
 	(:BT_CONETWIST_FLAGS_LIN_CFM #.1)
 	(:BT_CONETWIST_FLAGS_LIN_ERP #.2)
@@ -4791,8 +4775,6 @@
 	(m_relaxationFactor :float)
 	(m_damping :float)
 	(m_pad :pointer))
-
-(cl:defconstant btGeneric6DofConstraintDataName "btGeneric6DofConstraintData")
 
 (cffi:defcfun ("_wrap_btRotationalLimitMotor_m_loLimit_set" btRotationalLimitMotor_m_loLimit_set) :void
   (self :pointer)
@@ -5318,8 +5300,6 @@
 	(m_useLinearReferenceFrameA :int)
 	(m_useOffsetForConstraintFrame :int))
 
-(cl:defconstant btSliderConstraintDataName "btSliderConstraintData")
-
 (cffi:defcenum btSliderFlags
 	(:BT_SLIDER_FLAGS_CFM_DIRLIN #.(cl:ash 1 0))
 	(:BT_SLIDER_FLAGS_ERP_DIRLIN #.(cl:ash 1 1))
@@ -5691,8 +5671,6 @@
 	(m_useLinearReferenceFrameA :int)
 	(m_useOffsetForConstraintFrame :int))
 
-(cl:defconstant btGeneric6DofSpringConstraintDataName "btGeneric6DofSpringConstraintData")
-
 (cffi:defcfun ("_wrap_new_btGeneric6DofSpringConstraint__SWIG_0" new_btGeneric6DofSpringConstraint) :pointer
   (rbA :pointer)
   (rbB :pointer)
@@ -5901,8 +5879,6 @@
 
 (cffi:defcfun ("_wrap_btSequentialImpulseConstraintSolver_getScalarConstraintRowSolverLowerLimit" btSequentialImpulseConstraintSolver_getScalarConstraintRowSolverLowerLimit) :pointer
   (self :pointer))
-
-(cl:defconstant btSoftBodyDataName "btSoftBodyFloatData")
 
 (cffi:defcstruct btSoftBodyWorldInfo
 	(air_density :float)

@@ -28,6 +28,19 @@
 %ignore btSequentialImpulseConstraintSolver::getSSE2ConstraintRowSolverGeneric();
 %ignore btSequentialImpulseConstraintSolver::getSSE2ConstraintRowSolverLowerLimit();
 
+%ignore btVector3DataName;
+%ignore btQuaternionDataName;
+%ignore btCollisionObjectDataName;
+%ignore btRigidBodyDataName;
+%ignore btTypedConstraintDataName;
+%ignore btPoint2PointConstraintDataName;
+%ignore btHingeConstraintDataName;
+%ignore btConeTwistConstraintDataName;
+%ignore btGeneric6DofConstraintDataName;
+%ignore btSliderConstraintDataName;
+%ignore btGeneric6DofSpringConstraintDataName;
+%ignore btSoftBodyDataName;
+
 //btSoftBody nested classes
 struct Element
 {
