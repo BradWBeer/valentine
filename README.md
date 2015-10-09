@@ -5,7 +5,7 @@
 
 * You can build the bindings. You will need SWIG and g++. 
 
-* The CLOS file doesn't work yet. There are problems with package locks and methods with different numbers of arguments.
+* The CLOS interface doesn't work yet. There are problems with package locks and methods with different numbers of arguments.
 
 ## To build: 
 
@@ -29,13 +29,9 @@
 
 * enter the valentine directory and type: make clean all
 
-* go to the library.lisp file and point the library directory to your local-projects directory. (I know, I'll fix it!)
-
 * start up your local lisp 
 
 * in the repl type: (ql:quicklisp :valentine)
-
-* ignore all redefine errors. (This is my first checkin, give me a break!)
 
 * use valentine...oh, all the symbols are private right now so be sure to use valentine::<symbol>
 
