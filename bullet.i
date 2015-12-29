@@ -323,7 +323,7 @@ EXPORT btDbvt *_wrap_btSoftBody_m_cdbvt_get (btSoftBody *larg1) {
   %}
 
 
-%template(btSparseSdf3) btSparseSdf<3>;
-%array_class(float, floatArray);
-%array_class(btVector3, btVector3Array);
+##%template(btSparseSdf3) btSparseSdf<3>;
+##%array_class(float, floatArray);
+##%array_class(btVector3, btVector3Array);
 
