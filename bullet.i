@@ -226,6 +226,8 @@ struct Node : Feature
 %include "BulletCollision/CollisionShapes/btConcaveShape.h"
 %include "BulletCollision/CollisionShapes/btStaticPlaneShape.h"
 %include "BulletCollision/CollisionShapes/btBoxShape.h"
+%include "BulletCollision/CollisionShapes/btCylinderShape.h"
+%include "BulletCollision/CollisionShapes/btCapsuleShape.h"
 
 %include "BulletDynamics/Dynamics/btDynamicsWorld.h"
 %include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
