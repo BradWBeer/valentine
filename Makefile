@@ -4,7 +4,7 @@ AR=ar
 SED=sed
 CCFLAGS=  -g -Wall -O3 -fPIC
 SWIG=swig
-SFLAGS= -cffi -c++ -fastdispatch -DSWIG_TYPE_TABLE=swigbullet 
+SFLAGS= -cffi -c++ -generate-typedef -fastdispatch -DSWIG_TYPE_TABLE=swigbullet 
 INCLUDES= -I/usr/include/bullet
 
 BULLET_DIR=../tools/bullet3/bin/
@@ -27,12 +27,6 @@ $(target): $(objects)
 
 %_wrap.cxx %.lisp %-clos.lisp: %.i
 	$(SWIG) $(SFLAGS) $(INCLUDES) -o $@ $<
-	$(SED)	-i '10 i\(in-package :valentine)' swigbullet.lisp
-	$(SED)	-i '1 i\(in-package :valentine)' swigbullet-clos.lisp
-	$(SED)  -i 's/#\.BT_ENABLE_GYROSCOPIC_FORCE_IMPLICIT_BODY/#.8/' swigbullet.lisp 
-	$(SED)  -i 's/( :pointer)/(_ :pointer)/p' swigbullet.lisp 
-	$(SED)  -i 's/("_wrap_length" length)/("_wrap_length" length1)/' swigbullet.lisp 
-
 
 %.o: %.cxx
 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
